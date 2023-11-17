@@ -1,7 +1,6 @@
-
 body{
 background-image: url(/src/assets/bg.png);  
-  background-size: cover; /* Resize the background image to cover the entire container */
+  background-size:100%; /* Resize the background image to cover the entire container */
 
 
   display: flex;
@@ -14,8 +13,9 @@ background-image: url(/src/assets/bg.png);
   font-weight: 500;
   min-height: 900px;
 
-    
-}
+  }
+
+
 
 p{
   margin: 4px;

@@ -18,7 +18,7 @@ function App() {
   const [hashtag, setHashtag] = useState(""); // New state for the dynamic list hashtag
   const [destinationDrop, setDestinationDrop] = useState(false);
   const [platformDrop, setPlatformDrop] = useState(false);
-  const serverLink = "http://172.20.16.163:8000/hello";
+  const serverLink = "http://172.20.16.163:8000";
 
   function getDomainFromLink(link) {
     try {
@@ -140,7 +140,7 @@ function App() {
             />
           </label>
           <label>
-            Add Profile Name
+            Add Profile
             <br />
             <div className="field">
               <div>
@@ -191,7 +191,7 @@ function App() {
           </label>
 
           <button className="sha-ger" type="submit" onClick={handleSubmit}>
-            2..3.. - SHA-GER!
+            SHA-GER!
             <img src={catbamIcon} className="App-icon" alt="icon" />
           </button>
         </form>
