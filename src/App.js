@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { countries, platforms } from "./assets/LongLists.js";
 import logo from "./assets/logo.svg";
 import removeIcon from "./assets/close.svg";
@@ -17,7 +17,6 @@ function App() {
   const [hashtag, setHashtag] = useState(""); // New state for the dynamic list hashtag
   const [destinationDrop, setDestinationDrop] = useState(false);
   const [platformDrop, setPlatformDrop] = useState(false);
-  const dropdownRef = useRef();
 
   function getDomainFromLink(link) {
     try {
