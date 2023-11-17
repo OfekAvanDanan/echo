@@ -46,7 +46,7 @@ background-image: url(/src/assets/bg.png);
   align-items: center;
 
   color: #E7F2EE;
-  font-family: "ITC Avant Garde Gothic Pro";
+  font-family: "itc-avant-garde-gothic-pro";
   font-size: 16pt;
   font-weight: 500;
   min-height: 900px;
@@ -104,7 +104,7 @@ form{
 
   border: none;
     color: #E7F2EE;
-  font-family: "ITC Avant Garde Gothic Pro";
+  font-family: "itc-avant-garde-gothic-pro";
   font-size: 13pt;
   font-weight: 500;
   text-align: left;
@@ -129,7 +129,7 @@ form{
 
   border: none;
     color: #E7F2EE;
-  font-family: "ITC Avant Garde Gothic Pro";
+  font-family: "itc-avant-garde-gothic-pro";
   font-size: 13pt;
   font-weight: 500;
   text-align: left;
@@ -160,7 +160,7 @@ form{
   width: 455px;
    border: none;
     color: #E7F2EE;
-  font-family: "ITC Avant Garde Gothic Pro";
+  font-family: "itc-avant-garde-gothic-pro";
   font-size: 13pt;
   font-weight: 500;
   text-align: left;
@@ -206,7 +206,7 @@ button {
 
    border: none;
     color: #E7F2EE;
-  font-family: "ITC Avant Garde Gothic Pro";
+  font-family: "itc-avant-garde-gothic-pro";
   font-size: 13pt;
   font-weight: 700;
 }
