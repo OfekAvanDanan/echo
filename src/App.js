@@ -18,6 +18,7 @@ function App() {
   const [hashtag, setHashtag] = useState(""); // New state for the dynamic list hashtag
   const [destinationDrop, setDestinationDrop] = useState(false);
   const [platformDrop, setPlatformDrop] = useState(false);
+  const serverLink = "http://172.30.244.196:8000";
 
   function getDomainFromLink(link) {
     try {
@@ -92,6 +93,7 @@ function App() {
     e.preventDefault();
     // Add your form submission logic here
     console.log("Form submitted:", formData);
+    window.location.href = serverLink;
   };
 
   const DropDownMenu = ({ name, title, arr, open, action }) => {
@@ -129,7 +131,7 @@ function App() {
             />
           </label>
           <label>
-            <p>Select a platform country</p>
+            <p>Select a platform</p>
             <DropDownMenu
               name="platform"
               value={formData.platform}
@@ -194,8 +196,8 @@ function App() {
             <button className="custom-file-upload">Custom Upload</button>
             <input type="file" id="fileInput" name="fileInput" onChange={handleFileChange} />{" "}
           </label>
-          <button className="sha-ger" type="submit">
-            2..3.. - SH-GER!
+          <button className="sha-ger" type="submit" onClick>
+            2..3.. - SHA-GER!
             <img src={catbamIcon} className="App-icon" alt="icon" />
           </button>
         </form>
