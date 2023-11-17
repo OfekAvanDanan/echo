@@ -18,7 +18,7 @@ function App() {
   const [hashtag, setHashtag] = useState(""); // New state for the dynamic list hashtag
   const [destinationDrop, setDestinationDrop] = useState(false);
   const [platformDrop, setPlatformDrop] = useState(false);
-  const serverLink = "http://172.30.244.196:8000";
+  const serverLink = "http://172.20.16.163:8000/hello";
 
   function getDomainFromLink(link) {
     try {
@@ -38,18 +38,12 @@ function App() {
     });
   };
 
-  const handleLinkChange = (e) => {
-    setLink(e.target.value);
-  };
-
   const addLinkToList = () => {
-    if (getDomainFromLink(link) != null) {
-      setFormData({
-        ...formData,
-        links: [...formData.links, link], // Create a new array with the updated links
-      });
-      setLink(""); // Clear the input field after adding the link}
-    }
+    setFormData({
+      ...formData,
+      links: [...formData.links, link], // Create a new array with the updated links
+    });
+    setLink(""); // Clear the input field after adding the link}
   };
 
   const removeLinkFromList = (index) => {
@@ -59,6 +53,10 @@ function App() {
       ...formData,
       links: updatedLinks,
     });
+  };
+
+  const handleLinkChange = (e) => {
+    setLink(e.target.value);
   };
 
   const handleHashtagChange = (e) => {
@@ -93,7 +91,7 @@ function App() {
     e.preventDefault();
     // Add your form submission logic here
     console.log("Form submitted:", formData);
-    window.location.href = serverLink;
+    window.location.href = `${serverLink}?name=${formData.links}`;
   };
 
   const DropDownMenu = ({ name, title, arr, open, action }) => {
@@ -120,7 +118,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <form onSubmit={handleSubmit}>
           <label>
-            <p>Select destination country</p>
+            <p>Select Destination Country</p>
             <DropDownMenu
               name="destination"
               value={formData.destination}
@@ -131,7 +129,7 @@ function App() {
             />
           </label>
           <label>
-            <p>Select a platform</p>
+            <p>Select a Platform</p>
             <DropDownMenu
               name="platform"
               value={formData.platform}
@@ -142,7 +140,7 @@ function App() {
             />
           </label>
           <label>
-            Add link
+            Add Profile Name
             <br />
             <div className="field">
               <div>
@@ -155,7 +153,7 @@ function App() {
             <div className={formData.links.length !== 0 ? "list" : ""}>
               {formData.links.map((link, index) => (
                 <div key={index} className="list-item">
-                  {getDomainFromLink(link)}
+                  {link}
                   <button className="input-empty" type="button" onClick={() => removeLinkFromList(index)}>
                     <img src={removeIcon} className="App-icon" alt="icon" />
                   </button>
@@ -191,12 +189,8 @@ function App() {
               ))}
             </div>
           </label>
-          <label>
-            Add Files <br />
-            <button className="custom-file-upload">Custom Upload</button>
-            <input type="file" id="fileInput" name="fileInput" onChange={handleFileChange} />{" "}
-          </label>
-          <button className="sha-ger" type="submit" onClick>
+
+          <button className="sha-ger" type="submit" onClick={handleSubmit}>
             2..3.. - SHA-GER!
             <img src={catbamIcon} className="App-icon" alt="icon" />
           </button>
