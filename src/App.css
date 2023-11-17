@@ -1,6 +1,7 @@
 body{
-  background: #1B2623;
-  height: 100vh;
+background-image: url(/src/assets/bg.png);  
+  background-size: cover; /* Resize the background image to cover the entire container */
+
 
   display: flex;
   justify-content: center;
@@ -10,6 +11,7 @@ body{
   font-family: "ITC Avant Garde Gothic Pro";
   font-size: 16pt;
   font-weight: 500;
+  min-height: 900px;
 
     
 }
@@ -117,7 +119,7 @@ form{
 .input-empty{
   background: none;
   border: none; 
-  width: 475px;
+  width: 455px;
    border: none;
     color: #E7F2EE;
   font-family: "ITC Avant Garde Gothic Pro";
@@ -134,6 +136,7 @@ form{
   margin-bottom: 20px;
   display: flex;
 align-items: flex-start;
+flex-wrap: wrap;
   max-width: 500px;
   min-height: 0px;
 }
@@ -153,6 +156,47 @@ align-items: flex-start;
 }
 
 
+/* Basic styling */
+button {
+  background-color: #4caf50; /* Green background */
+  color: white; /* White text color */
+  padding: 10px 20px; /* Padding around the text */
+  font-size: 16px; /* Font size */
+  border: none; /* Remove border */
+  border-radius: 20px; /* Add rounded corners */
+  cursor: pointer; /* Add a cursor pointer on hover */
+
+   border: none;
+    color: #E7F2EE;
+  font-family: "ITC Avant Garde Gothic Pro";
+  font-size: 13pt;
+  font-weight: 700;
+}
+
+
+
+
+
+input[type="file"] {
+  display: none;
+}
+
+.sha-ger{
+  margin-top: 20px;
+  font-size: 20pt;
+  padding: 15px 25px;
+  gap: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Hover effect */
+.sha-ger:hover {
+  background-color: #45a049; /* Darker green background on hover */
+  transition: 0.5 ease;
+}
 /* width */
 ::-webkit-scrollbar {
   width: 10px;

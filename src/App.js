@@ -5,6 +5,7 @@ import logo from "./assets/logo.svg";
 import removeIcon from "./assets/close.svg";
 import dropdownIcon from "./assets/dropdown.svg";
 import addIcon from "./assets/add.svg";
+import catbamIcon from "./assets/catbam.svg";
 
 function App() {
   const [formData, setFormData] = useState({
@@ -80,6 +81,12 @@ function App() {
     });
   };
 
+  const handleFileChange = (e) => {
+    const fileName = e.target.files[0].name;
+    // Handle the file change event as needed
+    console.log("Selected file:", fileName);
+  };
+
   // Event handler to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -114,6 +121,7 @@ function App() {
             <p>Select destination country</p>
             <DropDownMenu
               name="destination"
+              value={formData.destination}
               title={formData.destination}
               arr={countries}
               open={destinationDrop}
@@ -123,7 +131,8 @@ function App() {
           <label>
             <p>Select a platform country</p>
             <DropDownMenu
-              name="location"
+              name="platform"
+              value={formData.platform}
               title={formData.platform}
               arr={platforms}
               open={platformDrop}
@@ -141,7 +150,7 @@ function App() {
                 <img src={addIcon} className="App-icon" alt="icon" />
               </button>
             </div>
-            <div className="list">
+            <div className={formData.links.length !== 0 ? "list" : ""}>
               {formData.links.map((link, index) => (
                 <div key={index} className="list-item">
                   {getDomainFromLink(link)}
@@ -169,7 +178,7 @@ function App() {
                 <img src={addIcon} className="App-icon" alt="icon" />
               </button>
             </div>
-            <div className="list">
+            <div className={formData.hashtags.length !== 0 ? "list" : ""}>
               {formData.hashtags.map((hashtag, index) => (
                 <div key={index} className="list-item">
                   {hashtag}
@@ -182,9 +191,13 @@ function App() {
           </label>
           <label>
             Add Files <br />
-            <input type="file" id="fileInput" name="fileInput" />
+            <button className="custom-file-upload">Custom Upload</button>
+            <input type="file" id="fileInput" name="fileInput" onChange={handleFileChange} />{" "}
           </label>
-          <button type="submit">Submit</button>
+          <button className="sha-ger" type="submit">
+            2..3.. - SH-GER!
+            <img src={catbamIcon} className="App-icon" alt="icon" />
+          </button>
         </form>
       </div>
     </div>
