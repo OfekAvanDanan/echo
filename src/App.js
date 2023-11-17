@@ -1,23 +1,193 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState, useEffect, useRef } from "react";
+import { countries, platforms } from "./assets/LongLists.js";
+import logo from "./assets/logo.svg";
+import removeIcon from "./assets/close.svg";
+import dropdownIcon from "./assets/dropdown.svg";
+import addIcon from "./assets/add.svg";
 
 function App() {
+  const [formData, setFormData] = useState({
+    destination: "Israel",
+    platform: "facebook",
+    links: [],
+    hashtags: [],
+  });
+  const [link, setLink] = useState(""); // New state for the dynamic list link
+  const [hashtag, setHashtag] = useState(""); // New state for the dynamic list hashtag
+  const [destinationDrop, setDestinationDrop] = useState(false);
+  const [platformDrop, setPlatformDrop] = useState(false);
+  const dropdownRef = useRef();
+
+  function getDomainFromLink(link) {
+    try {
+      const url = new URL(link);
+      return url.hostname;
+    } catch (error) {
+      console.error("Invalid URL:", link);
+      return null;
+    }
+  }
+
+  // Event handler to update form data on input change
+  const handleInputChange = (name, value) => {
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleLinkChange = (e) => {
+    setLink(e.target.value);
+  };
+
+  const addLinkToList = () => {
+    if (getDomainFromLink(link) != null) {
+      setFormData({
+        ...formData,
+        links: [...formData.links, link], // Create a new array with the updated links
+      });
+      setLink(""); // Clear the input field after adding the link}
+    }
+  };
+
+  const removeLinkFromList = (index) => {
+    const updatedLinks = [...formData.links];
+    updatedLinks.splice(index, 1);
+    setFormData({
+      ...formData,
+      links: updatedLinks,
+    });
+  };
+
+  const handleHashtagChange = (e) => {
+    setHashtag(e.target.value);
+  };
+
+  const addHashtagToList = () => {
+    setFormData({
+      ...formData,
+      hashtags: [...formData.hashtags, hashtag], // Create a new array with the updated links
+    });
+    setHashtag(""); // Clear the input field after adding the link
+  };
+
+  const removeHashtagFromList = (index) => {
+    const updatedLinks = [...formData.links];
+    updatedLinks.splice(index, 1);
+    setFormData({
+      ...formData,
+      hashtags: updatedLinks,
+    });
+  };
+
+  // Event handler to handle form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Add your form submission logic here
+    console.log("Form submitted:", formData);
+  };
+
+  const DropDownMenu = ({ name, title, arr, open, action }) => {
+    return (
+      <div className="menu-container">
+        <button className="field" onClick={() => action()}>
+          {title}
+          <img src={dropdownIcon} className="App-icon" />
+        </button>
+        <div className={`dropdown-menu ${open ? "active" : "inactive"}`}>
+          {arr.map((item, index) => (
+            <div key={index} name={item.name} value={item.name} onClick={() => handleInputChange(name, item.name)}>
+              {item.name}
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
+      <div className="Main">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <form onSubmit={handleSubmit}>
+          <label>
+            <p>Select destination country</p>
+            <DropDownMenu
+              name="destination"
+              title={formData.destination}
+              arr={countries}
+              open={destinationDrop}
+              action={() => setDestinationDrop(!destinationDrop)}
+            />
+          </label>
+          <label>
+            <p>Select a platform country</p>
+            <DropDownMenu
+              name="location"
+              title={formData.platform}
+              arr={platforms}
+              open={platformDrop}
+              action={() => setPlatformDrop(!platformDrop)}
+            />
+          </label>
+          <label>
+            Add link
+            <br />
+            <div className="field">
+              <div>
+                <input className="input-empty" type="text" value={link} onChange={handleLinkChange} />
+              </div>
+              <button className="input-empty" type="button" onClick={addLinkToList}>
+                <img src={addIcon} className="App-icon" />
+              </button>
+            </div>
+            <div className="list">
+              {formData.links.map((link, index) => (
+                <div key={index} className="list-item">
+                  {getDomainFromLink(link)}
+                  <button className="input-empty" type="button" onClick={() => removeLinkFromList(index)}>
+                    <img src={removeIcon} className="App-icon" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          </label>
+          <label>
+            Add Hashtag
+            <div className="field">
+              <div>
+                <input className="input-empty" type="text" value={hashtag} onChange={handleHashtagChange} />
+              </div>
+              <button
+                className="input-empty"
+                type="button"
+                value={hashtag}
+                name="hashtags"
+                id="hashtags"
+                onClick={addHashtagToList}
+              >
+                <img src={addIcon} className="App-icon" />
+              </button>
+            </div>
+            <div className="list">
+              {formData.hashtags.map((hashtag, index) => (
+                <div key={index} className="list-item">
+                  {hashtag}
+                  <button className="input-empty" type="button" onClick={() => removeHashtagFromList(index)}>
+                    <img src={removeIcon} className="App-icon" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          </label>
+          <label>
+            Add Files <br />
+            <input type="file" id="fileInput" name="fileInput" />
+          </label>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     </div>
   );
 }
