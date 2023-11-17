@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { countries, platforms } from "./assets/LongLists.js";
 import logo from "./assets/logo.svg";
 import removeIcon from "./assets/close.svg";
@@ -10,7 +10,7 @@ import catbamIcon from "./assets/catbam.svg";
 function App() {
   const [formData, setFormData] = useState({
     destination: "Israel",
-    platform: "facebook",
+    platform: "TikTok",
     links: [],
     hashtags: [],
   });
@@ -18,17 +18,9 @@ function App() {
   const [hashtag, setHashtag] = useState(""); // New state for the dynamic list hashtag
   const [destinationDrop, setDestinationDrop] = useState(false);
   const [platformDrop, setPlatformDrop] = useState(false);
-  const serverLink = "http://172.20.16.163:8000";
-
-  function getDomainFromLink(link) {
-    try {
-      const url = new URL(link);
-      return url.hostname;
-    } catch (error) {
-      console.error("Invalid URL:", link);
-      return null;
-    }
-  }
+  const serverLink = "http://172.20.16.163:8000/echo";
+  const [post, setPost] = useState();
+  const [message, setMessage] = useState(false);
 
   // Event handler to update form data on input change
   const handleInputChange = (name, value) => {
@@ -93,6 +85,18 @@ function App() {
     console.log("Form submitted:", formData);
     window.location.href = `${serverLink}?name=${formData.links}`;
   };
+  // useEffect hook for fetching data
+  /* useEffect(() => {
+    fetch(`${serverLink}?name=${formData.links}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setPost(data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, [formData.links]); // Add dependencies if needed*/
 
   const DropDownMenu = ({ name, title, arr, open, action }) => {
     return (
@@ -195,6 +199,7 @@ function App() {
             <img src={catbamIcon} className="App-icon" alt="icon" />
           </button>
         </form>
+        {message && <div className="sha-ger">{post.data}</div>}
       </div>
     </div>
   );
