@@ -92,7 +92,7 @@ function App() {
       <div className="menu-container">
         <button className="field" onClick={() => action()}>
           {title}
-          <img src={dropdownIcon} className="App-icon" />
+          <img src={dropdownIcon} className="App-icon" alt="icon" />
         </button>
         <div className={`dropdown-menu ${open ? "active" : "inactive"}`}>
           {arr.map((item, index) => (
@@ -138,7 +138,7 @@ function App() {
                 <input className="input-empty" type="text" value={link} onChange={handleLinkChange} />
               </div>
               <button className="input-empty" type="button" onClick={addLinkToList}>
-                <img src={addIcon} className="App-icon" />
+                <img src={addIcon} className="App-icon" alt="icon" />
               </button>
             </div>
             <div className="list">
@@ -146,7 +146,7 @@ function App() {
                 <div key={index} className="list-item">
                   {getDomainFromLink(link)}
                   <button className="input-empty" type="button" onClick={() => removeLinkFromList(index)}>
-                    <img src={removeIcon} className="App-icon" />
+                    <img src={removeIcon} className="App-icon" alt="icon" />
                   </button>
                 </div>
               ))}
@@ -166,7 +166,7 @@ function App() {
                 id="hashtags"
                 onClick={addHashtagToList}
               >
-                <img src={addIcon} className="App-icon" />
+                <img src={addIcon} className="App-icon" alt="icon" />
               </button>
             </div>
             <div className="list">
@@ -174,7 +174,7 @@ function App() {
                 <div key={index} className="list-item">
                   {hashtag}
                   <button className="input-empty" type="button" onClick={() => removeHashtagFromList(index)}>
-                    <img src={removeIcon} className="App-icon" />
+                    <img src={removeIcon} className="App-icon" alt="icon" />
                   </button>
                 </div>
               ))}
