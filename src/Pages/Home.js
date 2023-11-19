@@ -1,9 +1,9 @@
-import "./App.css";
+import "../App.css";
+import DropDownMenu from "./component/DropDownMenu";
 import React, { useState } from "react";
 import { countries, platforms } from "./assets/LongLists";
 import logo from "./assets/logo.svg";
 import removeIcon from "./assets/close.svg";
-import dropdownIcon from "./assets/dropdown.svg";
 import addIcon from "./assets/add.svg";
 import catbamIcon from "./assets/catbam.svg";
 
@@ -17,7 +17,6 @@ export default function Home() {
   const [link, setLink] = useState(""); // New state for the dynamic list link
   const [hashtag, setHashtag] = useState(""); // New state for the dynamic list hashtag
   const [destinationDrop, setDestinationDrop] = useState(false);
-  const [platformDrop, setPlatformDrop] = useState(false);
   const serverLink = "http://172.20.16.163:8000";
 
   function getDomainFromLink(link) {
@@ -100,26 +99,12 @@ export default function Home() {
         <img src={logo} className="App-logo" alt="logo" />
         <form onSubmit={handleSubmit}>
           <label>
-            <p>Select Destination Country</p>
-            <DropDownMenu
-              name="destination"
-              value={formData.destination}
-              title={formData.destination}
-              arr={countries}
-              open={destinationDrop}
-              action={() => setDestinationDrop(!destinationDrop)}
-            />
+            <p>Select a Destination</p>
+            <DropDownMenu name="destination" arr={countries} value={formData.destination} action={handleInputChange} />
           </label>
           <label>
             <p>Select a Platform</p>
-            <DropDownMenu
-              name="platform"
-              value={formData.platform}
-              title={formData.platform}
-              arr={platforms}
-              open={platformDrop}
-              action={() => setPlatformDrop(!platformDrop)}
-            />
+            <DropDownMenu name="platform" arr={platforms} value={formData.platform} action={handleInputChange} />
           </label>
           <label>
             Add Profile
