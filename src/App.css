@@ -20,12 +20,13 @@ p {
 
 .App-icon {
   width: 12px;
+  user-select: none;
 }
 
 .Main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+
   align-items: center;
   padding: 50px;
   gap: 20px;
@@ -83,7 +84,6 @@ form {
 .input-empty {
   background: none;
   border: none;
-  width: 455px;
   border: none;
   color: #e7f2ee;
   font-family: "itc-avant-garde-gothic-pro";
@@ -139,6 +139,10 @@ input[type="file"] {
   display: none;
 }
 
+input::placeholder {
+  color: #e7f2ee;
+}
+
 .sha-ger {
   margin-top: 20px;
   font-size: 20pt;
@@ -147,13 +151,6 @@ input[type="file"] {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.flag-icon {
-  width: 20pt;
-  height: 13pt;
-  border-radius: 10px;
-  user-select: none;
 }
 
 /* Style the entire scrollbar */

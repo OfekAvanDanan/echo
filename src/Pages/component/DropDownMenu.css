@@ -86,3 +86,10 @@
   background: rgba(198, 244, 230, 0.2);
   transition: 0.2s ease;
 }
+
+.flag-icon {
+  width: 23pt;
+  height: 12pt;
+  border-radius: 10px;
+  user-select: none;
+}

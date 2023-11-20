@@ -100,11 +100,23 @@ export default function Home() {
         <form onSubmit={handleSubmit}>
           <label>
             <p>Select a Destination</p>
-            <DropDownMenu name="destination" arr={countries} value={formData.destination} action={handleInputChange} />
+            <DropDownMenu
+              name="destination"
+              arr={countries}
+              value={formData.destination}
+              showFlag={true}
+              action={handleInputChange}
+            />
           </label>
           <label>
             <p>Select a Platform</p>
-            <DropDownMenu name="platform" arr={platforms} value={formData.platform} action={handleInputChange} />
+            <DropDownMenu
+              name="platform"
+              arr={platforms}
+              value={formData.platform}
+              showFlag={true}
+              action={handleInputChange}
+            />
           </label>
           <label>
             Add Profile
@@ -159,7 +171,7 @@ export default function Home() {
 
           <button className="sha-ger" type="submit" onClick={handleSubmit}>
             SHA-GER!
-            <img src={catbamIcon} className="App-icon" alt="icon" />
+            <img src={catbamIcon} alt="icon" />
           </button>
         </form>
       </div>

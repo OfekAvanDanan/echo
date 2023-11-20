@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./DropDownMenu.css";
 import dropdownIcon from "../assets/dropdown.svg";
+import searchIcon from "../assets/search.svg";
 
 export default function DropDownMenu(props) {
   const [dropdown, setDropdown] = useState(false);
+  const [search, setSearch] = useState("");
+  const dropdownRef = useRef(null);
 
   const updateDropDown = () => {
+    console.log("clicked!");
     setDropdown(!dropdown);
   };
 
@@ -14,19 +18,68 @@ export default function DropDownMenu(props) {
     updateDropDown();
   };
 
-  function getFileName(name) {
+  const getFileName = (name) => {
     const lowercaseName = name.toLowerCase();
     const File = props.arr.find((c) => c.name.toLowerCase() === lowercaseName);
     return File ? File.fileName : null;
-  }
+  };
 
-  const flag = getFileName(props.value);
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && filteredItems.length > 0) {
+      // If Enter key is pressed and there are filtered items, select the first item
+      action(props.name, filteredItems[0].name);
+    }
+  };
+
+  const filteredItems = props.arr.filter((item) => item.name.toLowerCase().includes(search.toLowerCase()));
+
+  const handleOutsideClick = (e) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+      setDropdown(false);
+    }
+  };
+
+  useEffect(() => {
+    // Attach the event listener on mount
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    // Detach the event listener on unmount
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []); // Empty dependency array means this effect will only run on mount and unmount
 
   const DropdownTitle = (
-    <div className="dropdown-title" onClick={updateDropDown}>
+    <div
+      className="dropdown-title"
+      onMouseDown={(e) => {
+        e.preventDefault();
+        updateDropDown();
+      }}
+    >
       <div className="title-flag-container">
-        <img src={flag} className="flag-icon" alt="icon" />
-        {props.value}
+        {dropdown ? (
+          <>
+            <img src={searchIcon} className="flag-icon" alt="icon" />
+            <input
+              type="text"
+              placeholder="Search..."
+              value={search}
+              className="input-empty"
+              onChange={handleSearchChange}
+              onKeyDown={handleKeyDown}
+            />
+          </>
+        ) : (
+          <>
+            {props.showFlag && <img src={getFileName(props.value)} className="flag-icon" alt="icon" />}
+            {props.value}
+          </>
+        )}
       </div>
       <img
         src={dropdownIcon}
@@ -39,9 +92,9 @@ export default function DropDownMenu(props) {
 
   const DropDownList = (
     <div className="dropdown-list" id={`dropdown-list-${dropdown ? "activated" : "deactivated"}`}>
-      {props.arr.map((item, index) => (
+      {filteredItems.map((item, index) => (
         <div key={index} className="dropdown-item" onClick={(e) => action(props.name, item.name)}>
-          <img src={item.fileName} className="flag-icon" alt="icon" />
+          {props.showFlag && <img src={item.fileName} className="flag-icon" alt="icon" />}
           {item.name}
         </div>
       ))}
@@ -49,7 +102,7 @@ export default function DropDownMenu(props) {
   );
 
   return (
-    <div>
+    <div ref={dropdownRef}>
       {DropdownTitle}
       {DropDownList}
     </div>
