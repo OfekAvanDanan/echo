@@ -1,16 +1,28 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
-import DropDownMenu from "./Pages/component/DropDownMenu";
+import BackgroundCanvas from "./Pages/component/AnimatedBackground";
+import { render } from "react-dom";
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
-      </Routes>
-    </Router>
+    <div className="App">
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <div className="background">
+                  <BackgroundCanvas width={1920} height={1080} animate={true} />
+                </div>
+                <Home />
+              </>
+            }
+          />
+        </Routes>
+      </Router>
+    </div>
   );
 };
 
