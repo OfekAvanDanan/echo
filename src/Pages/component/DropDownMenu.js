@@ -54,7 +54,15 @@ export default function DropDownMenu(props) {
   }, []); // Empty dependency array means this effect will only run on mount and unmount
 
   const DropdownTitle = (
-    <div className="field" id="dropdown-title" onClick={updateDropDown}>
+    <div
+      className="field"
+      id="dropdown-title"
+      onMouseDown={(e) => {
+        e.preventDefault();
+        updateDropDown();
+      }}
+    >
+      {" "}
       <div className="title-flag-container">
         {dropdown ? (
           <>
