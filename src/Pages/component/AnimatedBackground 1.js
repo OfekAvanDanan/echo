@@ -4,7 +4,7 @@ import canvasSketch from "canvas-sketch";
 
 const random = require("canvas-sketch-util/random");
 
-const num = 5;
+const num = 4;
 const particles = [];
 
 const bg = "#1B2623";
@@ -80,6 +80,7 @@ class Particle {
 const BackgroundCanvas = (props) => {
   const canvasRef = useRef(null);
   const [cursor, setCursor] = useState({ x: 999999, y: 999999 });
+  //const [particle, setParticle] = useState([]);
 
   useEffect(() => {
     const canvas = canvasRef.current;

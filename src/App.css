@@ -6,6 +6,8 @@ body {
 
 .background {
   position: absolute;
+  width: max-content;
+  height: max-content;
 }
 
 .App {
