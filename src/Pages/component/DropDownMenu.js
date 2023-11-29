@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./Inputs.css";
 import dropdownIcon from "../assets/dropdown.svg";
 import searchIcon from "../assets/search.svg";
