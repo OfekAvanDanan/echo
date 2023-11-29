@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./DropDownMenu.css";
+import "./Inputs.css";
 import dropdownIcon from "../assets/dropdown.svg";
 
 export default function DropDownMenu(props) {
@@ -23,7 +23,7 @@ export default function DropDownMenu(props) {
   const flag = getFileName(props.value);
 
   const DropdownTitle = (
-    <div className="dropdown-title" onClick={updateDropDown}>
+    <div className="field" id="dropdown-title" onClick={updateDropDown}>
       <div className="title-flag-container">
         <img src={flag} className="flag-icon" alt="icon" />
         {props.value}
