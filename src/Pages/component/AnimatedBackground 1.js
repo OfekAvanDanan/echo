@@ -5,7 +5,6 @@ import canvasSketch from "canvas-sketch";
 const random = require("canvas-sketch-util/random");
 
 const num = 4;
-const particles = [];
 
 const bg = "#1B2623";
 const col1 = "#5DBA85";
@@ -83,6 +82,7 @@ const BackgroundCanvas = (props) => {
   //const [particle, setParticle] = useState([]);
 
   useEffect(() => {
+    const particles = [];
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
     const width = props.width;
