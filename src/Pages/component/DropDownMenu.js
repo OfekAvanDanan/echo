@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import "./DropDownMenu.css";
+import React, { useState } from "react";
+import "./Inputs.css";
 import dropdownIcon from "../assets/dropdown.svg";
 import searchIcon from "../assets/search.svg";
 
@@ -54,13 +54,7 @@ export default function DropDownMenu(props) {
   }, []); // Empty dependency array means this effect will only run on mount and unmount
 
   const DropdownTitle = (
-    <div
-      className="dropdown-title"
-      onMouseDown={(e) => {
-        e.preventDefault();
-        updateDropDown();
-      }}
-    >
+    <div className="field" id="dropdown-title" onClick={updateDropDown}>
       <div className="title-flag-container">
         {dropdown ? (
           <>
