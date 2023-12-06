@@ -5,9 +5,9 @@ body {
 }
 
 .background {
-  position: absolute;
-  width: max-content;
-  height: max-content;
+  position: fixed;
+  width: 100%;
+  height: 100%;
 }
 
 .App {
@@ -76,7 +76,6 @@ form {
   color: #e7f2ee;
   font-size: 13pt;
   text-align: left;
-
 }
 
 .field:hover {

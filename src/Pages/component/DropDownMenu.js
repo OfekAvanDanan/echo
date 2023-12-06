@@ -9,7 +9,6 @@ export default function DropDownMenu(props) {
   const dropdownRef = useRef(null);
 
   const updateDropDown = () => {
-    console.log("clicked!");
     setDropdown(!dropdown);
   };
 

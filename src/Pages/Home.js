@@ -13,6 +13,7 @@ export default function Home() {
     links: [],
     hashtags: [],
   });
+
   const serverLink = "http://172.20.16.163:8000";
 
   // Event handler to update form data on input change

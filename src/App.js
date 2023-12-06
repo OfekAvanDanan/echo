@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
-import BackgroundCanvas from "./Pages/component/AnimatedBackground 1";
+import BackgroundCanvas from "./Pages/component/AnimatedBackground";
 
 const App = () => {
+  const [windowSize, setWindowSize] = useState([window.innerWidth, window.innerHeight]);
+
+  useEffect(() => {
+    const watchSize = () => {
+      const newSize = [window.innerWidth, window.innerHeight];
+      setWindowSize(newSize);
+    };
+
+    window.addEventListener("resize", watchSize);
+
+    return () => {
+      window.removeEventListener("resize", watchSize);
+    };
+  }, []);
+
+  console.log(windowSize);
+
   return (
     <div className="App">
       <Router>

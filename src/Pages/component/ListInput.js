@@ -11,7 +11,6 @@ export default function ListInput(props) {
   };
 
   const addItem = () => {
-    console.log(props.list);
     props.action(props.listName, [...props.list, textBox]);
     setTextBox("");
   };
